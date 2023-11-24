@@ -1,0 +1,50 @@
+# Script em PowerShell para criação da primeira floresta e dominio do Active Directory.
+
+
+# Esse comando instala o serviço do Active Directory
+
+
+Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
+
+
+<# Exp. comando: 
+ 
+ Install-WindowsFeature - O comando permitirá instalar a função do Windows, os serviços de função ou o recurso do Windows no servidor local ou remoto. É semelhante ao uso do gerenciador de servidores do Windows para instalá-los.
+
+ AD-Domain-Services - É a função a ser instalada, nesse caso a função do Active Directory.
+
+ IncludeManagementTools - Ele instalará as ferramentas de gerencimento para o serviço de função.
+
+ #>
+
+ Install-ADDSForest -DomainName empresa.com 
+ 
+ <# Exp. comando:
+ 
+ Install-ADDSForest - Esse comando cria a floresta do dominio.
+
+ DomainName - Comando para adicionar o nome do dominio.
+
+ #>
+
+ <# Após a reinicialização, rode os comandos abaixo, esses comandos são importantes para a
+
+ validação dos serviços do Active Directory, eles mostram se está tudo rodando certo.
+ 
+ #>
+ 
+ Get-Service adws , dns , kdc , netlogon 
+
+ <# Exp.comando:
+
+ Adws - Mostra que o serviço do Active Directory está online.
+
+ Dns - Mostra que o serviços do Dns estão online.
+
+ Kdc - Mostra que o serviços do Kerberos (Serviço de autenticação dos usuários) está online.
+
+ Net logon - Mostra que o serviço do net Logon (login da rede) está online.
+
+ #>
+
+By.Darlan Nery
